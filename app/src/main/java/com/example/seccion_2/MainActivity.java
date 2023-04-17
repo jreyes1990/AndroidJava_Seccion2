@@ -31,12 +31,23 @@ public class MainActivity extends AppCompatActivity {
     names.add("Fernando");
     names.add("Ruben");
     names.add("Santiago");
+    names.add("Carmen");
+    names.add("Margarita");
+    names.add("Juan");
+    names.add("Jose");
+    names.add("Alberto");
+    names.add("Jolberth");
+    names.add("Sherly");
+    names.add("Emmanuel");
+    names.add("Michael");
+    names.add("Jaqueline");
+    names.add("Ludwin");
 
     // Adaptador, la forma visual en que mostraremos nuestros datos
-    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
+    // ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
 
     // Enlazamos el adaptador con nuestro List View
-    listView.setAdapter(adapter);
+    // listView.setAdapter(adapter);
 
     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       @Override
