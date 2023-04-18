@@ -1,8 +1,12 @@
 package com.example.seccion_2;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -15,6 +19,8 @@ import java.util.List;
 public class GridActivity extends AppCompatActivity {
   private GridView gridView;
   private List<String> names;
+  private MyAdapter myAdapter;
+  private int counter = 0;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -28,18 +34,7 @@ public class GridActivity extends AppCompatActivity {
     names.add("Alejandro");
     names.add("Fernando");
     names.add("Ruben");
-    names.add("Santiago");
-    names.add("Carmen");
-    names.add("Margarita");
-    names.add("Juan");
-    names.add("Jose");
-    names.add("Alberto");
-    names.add("Jolberth");
-    names.add("Sherly");
-    names.add("Emmanuel");
-    names.add("Michael");
-    names.add("Jaqueline");
-    names.add("Ludwin");
+
 
     gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       @Override
@@ -49,7 +44,29 @@ public class GridActivity extends AppCompatActivity {
     });
 
     // Enlazamos con nuestro adaptador personalizado
-    MyAdapter myAdapter = new MyAdapter(this, R.layout.grid_item, names);
+    myAdapter = new MyAdapter(this, R.layout.grid_item, names);
     gridView.setAdapter(myAdapter);
   }
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.action_bar_menu, menu);
+    return true;
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    switch (item.getItemId()){
+      case R.id.add_item:
+        // Aniadimos nuevo nombre
+        this.names.add("Added No. "+(++counter));
+        // Notificamos al adaptador el cambio producido
+        this.myAdapter.notifyDataSetChanged();
+        return true;
+      default:
+        return super.onOptionsItemSelected(item);
+    }
+  }
+
 }
