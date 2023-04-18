@@ -4,26 +4,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-  private ListView listView;
+public class GridActivity extends AppCompatActivity {
+  private GridView gridView;
   private List<String> names;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+    setContentView(R.layout.activity_grid);
 
-    listView = (ListView) findViewById(R.id.listView);
+    gridView = (GridView) findViewById(R.id.gridView);
 
     // Datos a mostrar
     names = new ArrayList<String>();
@@ -43,22 +41,15 @@ public class MainActivity extends AppCompatActivity {
     names.add("Jaqueline");
     names.add("Ludwin");
 
-    // Adaptador, la forma visual en que mostraremos nuestros datos
-    // ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
-
-    // Enlazamos el adaptador con nuestro List View
-    // listView.setAdapter(adapter);
-
-    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
       @Override
       public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(MainActivity.this, "Clicked: "+ names.get(position), Toast.LENGTH_SHORT).show();
+        Toast.makeText(GridActivity.this, "Clicked: "+ names.get(position), Toast.LENGTH_SHORT).show();
       }
     });
 
     // Enlazamos con nuestro adaptador personalizado
-    MyAdapter myAdapter = new MyAdapter(this, R.layout.list_item, names);
-    listView.setAdapter(myAdapter);
+    MyAdapter myAdapter = new MyAdapter(this, R.layout.grid_item, names);
+    gridView.setAdapter(myAdapter);
   }
 }
-
